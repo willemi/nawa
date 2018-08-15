@@ -1,0 +1,67 @@
+@media only screen and ( max-device-width: 1600px) {
+	header .miscellaneous .stock {
+		margin-right: 150px;
+	}
+	div.phoneNav nav a {
+		padding: 0.5% 0;
+		font-size: 16px;
+	}
+	.history, div.phoneNav .gb {
+		transform: scale(0.7);
+		-webkit-transform: scale(0.7);
+		-moz-transform: scale(0.7);
+	}
+}
+@media only screen and ( max-device-width: 768px) {
+	div.phoneNav nav a {
+		padding: 2.5% 0;
+	}
+	.langpho { 
+		display: block;
+	}
+	#fp-nav { 
+		display: none;
+	}
+	header .miscellaneous .stock { 
+		display: none;
+	}
+	.totalTit{ 
+		width: 600px; 
+		.waperlines{ 
+			width: 100%
+		}
+		&.acitve {
+			.waperlines {
+				.sublines {
+					&.pcsvg { 
+						display:none;
+					}
+					&.phonesvg { 
+						display: block !important;
+					}
+				}
+			}
+		}
+	}	
+}
+@media only screen and ( max-device-width: 420px) {
+	header {
+		.logo {
+			margin-left:10px;
+		}
+		.miscellaneous{
+			margin-right: 10px;
+		}
+	}
+	.head-right {
+		display: none;
+	}
+	// .section.section1 .totalTit {
+        
+	// }
+	.fixed {
+		display:none
+	}
+
+
+}

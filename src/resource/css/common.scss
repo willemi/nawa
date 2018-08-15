@@ -1,0 +1,541 @@
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset,
+legend, input, textarea, select, p, blockquote, th, td { margin: 0; padding: 0; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+
+address, caption, cite, code, dfn, em, strong, th, var, optgroup, i { font-style: normal; }
+ol, ul { list-style: none; }
+caption, th { text-align: left; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+q:before, q:after { content: ''; }
+abbr, acronym { border: 0; font-variant: normal; }
+
+/* to preserve line-height and selector appearance */
+sup { vertical-align: text-top; }
+sub { vertical-align: text-bottom; }
+input, textarea, select { font-family: inherit; font-size: inherit; font-weight: inherit; outline: none;}
+
+/* to enable resizing for IE */
+input, textarea, select { *font-size: 100%; }
+
+/* because legend doesn't inherit in IE */
+legend { color: #000; }
+
+/* HTML5 */
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+a { color: #333; text-decoration: none; cursor: pointer;}
+a:hover, a:focus {
+	color: #333;
+	text-decoration: none;
+}
+/* 公共字体 */
+// 播放器控件背景色
+audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
+	background: rgba(255,255,255,.8);
+}
+body {
+	// min-width: 850px;
+	font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 12px;
+	// background-color:#019ced;
+	line-height: 1.42857143 !important;
+	color: #333 !important;
+	min-width: 1180px;
+}
+
+/**
+ * 最多显示 $lineCount 行
+ * lines
+ *
+ * example:
+ * @include lines;
+ * @include lines(3);
+ */
+ @mixin lines($lineCount: 2){
+	display: -webkit-box;
+	-webkit-line-clamp: $lineCount;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/**
+ * 浏览器兼容前缀
+ *
+ * example:
+ * @include prefix(transform, scale(2), webkit);
+ * @include prefix(transform, scale(2), webkit moz);
+ */
+ @mixin prefix($property, $value, $vendors: webkit moz ms o) {
+    @if $vendors {
+      @each $vendor in $vendors {
+            #{"-" + $vendor + "-" + $property}: #{$value};
+      }
+    }
+    #{$property}: #{$value};
+}
+/**
+ * 仅兼容 webkit 即可
+ *
+ * example:
+ * @include webkit(transform, scale(2));
+ */
+ @mixin webkit($property, $value){
+	@include prefix($property, $value, webkit);
+}
+/**
+ * 浏览器兼容 值前缀
+ *
+ * example:
+ * @include prefix-value(display, box);
+ */
+ @mixin prefix-value($property, $value, $vendors: webkit moz ms o) {
+	@if $vendors {
+	  @each $vendor in $vendors {
+			#{$property}: #{"-" + $vendor + "-" + $value};
+	  }
+	}
+	#{$property}: #{$value};
+}
+/**
+* 浏览器兼容 值前缀
+* 仅兼容 webkit 即可
+*
+* example:
+* @include webkit-value(display, box);
+*/
+@mixin webkit-value($property, $value){
+  @include prefix-value($property, $value, webkit);
+}
+
+
+$bc2a: #1e2049;
+$bc26: #222670;
+$c4b: #4ba9ce;
+
+.gradient {
+	color: #1f204a;
+	background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(0, 216, 255, 1)), to(rgba(68, 46, 133, 1)));
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.hover-shadow {
+	// -webkit-box-shadow: 0 4px 20px 1px rgba(41,113,181,.76);
+	// -moz-box-shadow: 0 4px 20px 1px rgba(41,113,181,.76);
+	// box-shadow: 0 4px 20px 1px rgba(41,113,181,.76);
+	@include webkit(box-shadow, 0 4px 20px 1px rgba(41,113,181,.76));
+}
+
+.els {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.img {
+    max-width:100%;
+    max-height:100%;
+    display: block;
+    position: relative;
+}
+.player-btn {
+	&:before {
+		content:'';
+		width:150px;
+		height:150px;
+		position: absolute;
+		left:50%;
+		top:50%;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+		display: block;
+		background-image: url('../img/index/150_150.png');
+		background-size: cover;
+		cursor: pointer;
+	}
+	@extend .img
+}
+.before {
+	&::before {
+		content:'';
+		display: inline-block;
+		position: absolute;
+		left:20px;
+		top:0;
+		width:71px;
+		height:27px;
+		background-image: url('../img/bodybuilding/71_27.png');
+		background-size: cover;
+	}
+}
+.p-icons {
+	display: inline-block;
+	padding-left:25px;
+	padding-right:10px;
+	position: relative;
+	&:before {
+		content:'';
+		width:21px;
+		height:18px;
+		background-image: url('../img/buildimg-icons.png');
+		background-size: cover;
+		position: absolute;
+		left:0;
+		top:3px;
+	}
+	&.new-time {
+		padding-left:0;
+		&:before {
+			background:transparent;
+		}
+	}
+	&.pre-time {
+		&:before {
+			background-position: 0 0;
+		}
+	}
+	&.play-num {
+		&:before {
+			background-position: 0 -18px;
+		}
+	}
+	&.comments {
+		&:before {
+			background-position: 0 -36px;
+		}
+	}       
+}
+
+/* 清除浮动 */
+.clearfix { zoom: 1; }
+.clearfix:after { content: ""; display: block; clear: both; height: 0; visibility: hidden; }
+
+* {
+	box-sizing: border-box;
+}
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    // -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+    border-radius: 6px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #cecece;
+    // -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #cecece;
+}
+
+
+.header {
+	@extend .clearfix;
+	background-color: #fff;	
+	.header-wraper {
+		@extend .clearfix;
+		width:1180px;
+		margin:0 auto;
+		h1 {
+			font-size: 0;
+			width:185px;
+			float: left;
+			height:100px;
+			background-image: url('../img/160_50.png');
+			background-repeat: no-repeat;
+			background-position: 25px 30px;
+		}
+		.head-right {
+			float:right;
+			padding:8px 0 18px;
+			width:940px;
+			.header-top {
+				text-align: right;
+				p {
+					height:30px;
+					padding:0 10px;
+					background-color: #1f204a;
+					border-radius: 20px;
+					font:14px/30px "微软雅黑";
+					display: inline-block;
+					color:#fff;
+				}
+				span {
+					display: inline-block;
+					margin-left:20px;
+					a {
+						display: inline-block;
+						color:#898989;
+						font:14px/30px "微软雅黑";
+					}
+				}
+			}
+			.meun {
+				margin-top:8px;
+				.search {
+					width:180px;
+					height:34px;
+					position: relative;
+					float:right;
+					display: flex;
+					flex: 1;
+					input {
+						width:100%;
+						height:100%;
+						display: block;
+						background-color: #f9f9f9;
+						border:1px solid #dcdcdc;
+						border-radius: 3px;
+						color:#959595;
+						font:16px/32px "微软雅黑";
+						padding:0 30px 0 10px;
+						position: relative;
+						z-index: 0;
+					}
+					i {
+						position: absolute;
+						right:0;
+						top:0;
+						width:30px;
+						height:34px;
+						z-index: 1;
+						padding:10px 8px;
+						cursor: pointer;
+					}
+				}
+				.nav {
+					float: left;
+					li {
+						float:left;
+						a {
+							padding:0 15px;
+							color: #535353;
+							font: 16px/34px "微软雅黑";
+							text-align: center							
+						}
+						&.active a, &:hover a  {
+							color:#1f204a;
+							position: relative;
+							background-color: #fff;
+							&:before {
+								content:"";
+								width:4px;
+								height:4px;
+								background-color: #1f1f1f;
+								border-radius: 50%;
+								position: absolute;
+								left:5px;
+								top:16px;								
+							}
+						}
+					}
+				}
+			}
+		}
+		
+	}
+}
+.hover {
+	li {
+		@include webkit(transition, all .3s ease-in-out);
+		&:hover {
+			@include webkit(transform, translateY(-5px));
+		}
+	}
+}
+.tab-nav {
+	width:100%;
+	height:50px;
+	background-color: #fff;
+	ul {
+		text-align: center;
+		display: table;
+		margin:0 auto;
+		li {
+			float:left;
+			padding:0 50px;			
+			a {
+				font:20px/50px "微软雅黑";
+				color:#535353;
+				padding:0;
+				position: relative;
+				&:hover {					
+					@extend .active;
+				}
+				&:focus, &:hover {
+					background: transparent;
+				}
+			}
+			&.active a {
+				@extend .active
+			}
+		}
+	}
+}
+.li {
+	width:50%;
+	height:auto;
+	padding-right:20px;
+	margin-top:20px;
+	border-radius: 5px;
+	float: left;
+	position: relative;
+	&::before {
+		content:'';
+		position: absolute;
+		display: block;
+		left:0;
+		right:20px;
+		top:0;
+		bottom:0;
+		z-index: 0;
+		background-color: #fff;
+	}
+	&:hover {
+		&::before {
+			@include webkit(box-shadow, 0 4px 20px 1px rgba(167,167,167,.42));
+		}
+	}
+	a > span {
+		width:100%;
+		height:280px;
+		display: block;
+		position: relative;
+		z-index: 1;
+		border-radius: 5px;
+		img {
+			@extend .img
+		}
+		
+	}		
+	em {
+		@include prefix-value(background-image, linear-gradient(top, #00d8ff, #442e85));
+		width: 66px;
+		height: 36px;
+		display: none;
+		border-radius: 5px;
+		color:#000;
+		text-align: center;
+		font:20px/36px "微软雅黑";
+		position: absolute;
+		right:30px;
+		top:10px;
+		z-index: 1;
+	}
+	dl {
+		@extend .clearfix;
+		background-color: #fff;
+		padding-top:10px;
+		dt {
+			width:100%;
+			height:27px;
+			padding:0 20px;
+			position: relative;
+			h5 {
+				@extend .els;
+				width:100%;
+				font:600 18px/27px "微软雅黑";
+				&:hover {
+					color:#1296db;
+				}
+			}
+		}
+		dd {
+			font:16px/24px "微软雅黑";
+			color:#959595;
+			padding:5px 20px;
+			@include lines;
+		}
+	}
+	a div {
+		width:100%;
+		padding:20px;
+		background-color:#fff;
+		border-top:1px solid #ccc;
+		height:auto;
+		overflow: hidden;
+		margin-top:20px;
+		span {
+			font:16px/24px "微软雅黑";
+			color:#959595;
+			display: inline-block;
+			&:first-child {
+				float:left;
+			}
+			&:last-child {
+				float:right;
+			}
+			p {
+				@extend .p-icons;
+			}
+		}
+	}
+}
+footer {
+	@extend .clearfix;
+	background-image: url('../img/bj.jpg');
+	width:	100%; 
+	display: table;
+	div {
+		@extend .clearfix;
+		width:1180px;
+		margin:0 auto;
+		padding:50px 0 50px 40px;
+		color:#fff;
+		dl {
+			float:left;
+			dt {
+				font:600 18px/24px "微软雅黑";
+				padding-bottom:20px
+			}
+			dd {
+				font:16px/24px "微软雅黑";
+				a {					
+					color:#fff;
+					&:hover {
+						color:#fff;
+					}
+				}
+				span {
+					width:92px;
+					height:92px;
+					background-color: #fff;
+					padding:5px;
+					display: block;
+					margin:20px auto;
+					img {
+						@extend .img
+					}
+				}			
+			}
+			&:first-child {
+				width:250px;
+			}
+			&.ewm {
+				text-align: center;
+				margin-left:70px;
+			}
+		}
+	}
+	& > span {
+		width:100%;
+		display: block;
+		border-top:1px solid #fff;
+		a {
+			width:1180px;
+			margin:0 auto;
+			text-align: right;
+			display: block;
+			font:14px/50px "微软雅黑";
+			color:#fff;
+			padding-right:40px;
+			&:hover {
+				color:#fff;
+			}
+		}
+	}
+}
