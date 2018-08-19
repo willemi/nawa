@@ -224,6 +224,9 @@ body {
                             text-align: center;
                             font:16px/44px "微软雅黑";
                         }
+                        &.pay i {
+                            display: none
+                        }
                         p {
                             display: block;
                             width:100%;

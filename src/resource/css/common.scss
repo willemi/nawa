@@ -475,6 +475,24 @@ $c4b: #4ba9ce;
 		}
 	}
 }
+.top-go {
+	display: table;
+	position: fixed;
+	right:10px;
+	bottom:10px;
+	background-color: #fff;
+	border:1px solid #ccc;
+	padding:5px;
+	font:14px/16px "微软雅黑";
+	z-index: 99;
+	cursor: pointer;
+	display: none
+}
+.top-go:hover {
+	background-color: #1f204a;
+	color:#fff;
+	border:1px solid #1f204a;
+}
 footer {
 	@extend .clearfix;
 	background-image: url('../img/bj.jpg');

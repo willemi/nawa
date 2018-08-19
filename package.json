@@ -1,7 +1,7 @@
 {
-  "name": "nawa",
+  "name": "nawaa",
   "version": "1.0.0",
-  "description": "nawa",
+  "description": "nawaa",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --colors --display-error-details --display-modules",

@@ -34,6 +34,18 @@ function bindEvents(){
 			$phoneNav.addClass('active');
 		}
 	});
+	var $topGo = $(".top-go");
+	$(window).on("scroll", function(){
+		var stop = $(window).scrollTop();
+		if(stop > 800){
+			$topGo.fadeIn(1500);
+		}else{
+			$topGo.fadeOut(1500);
+		}
+	})
+	$doc.on("click", '.top-go', function(){
+		$('html, body').animate({ scrollTop: 0 }, 1000);
+	})
 }
 
 util.init = () => {
